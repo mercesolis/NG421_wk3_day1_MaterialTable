@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {IHeroMember} from './interfaces/ihero-member';
-  import { from } from 'rxjs';
+  
 import { HeroService } from './services/hero.service';
 import { MatSort } from '@angular/material/sort';
 
@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.heroService.getMembers());
     this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filter: string): void {
+    this.dataSource.filter = filter.trim().toLowerCase();
   }
 }
 
